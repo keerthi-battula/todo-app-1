@@ -90,12 +90,12 @@ pipeline{
     stage('deploy to artifactory'){
             steps{
                 rtUpload (
-            serverId: 'artifactory_server',
+            serverId: 'ARTIFACTORY_SERVER',
             spec: '''{
                  "files": [
                              {
                                 "pattern": "app/target/*.war",
-                                "target": "art-doc-dev-loc/todo-app/"
+                                "target": "art-doc-dev-loc-todo-app/todo-app/"
                             }
                         ]
             }''',
@@ -106,11 +106,11 @@ pipeline{
         stage('download artifact'){
             steps{
                  rtDownload (
-                 serverId: "artifactory_server",
+                 serverId: "ARTIFACTORY_SERVER",
                 spec:"""{
                      "files": [
                                 {
-                                    "pattern": "art-doc-dev-loc/todo-app/**",
+                                    "pattern": "art-doc-dev-loc-todo-app/todo-app/**",
                                     "target": "app/artifacts/"      
                                 }
                             ]
