@@ -95,7 +95,7 @@ pipeline{
                  "files": [
                              {
                                 "pattern": "app/target/*.war",
-                                "target": "art-doc-dev-loc-todo-app/todo-app/"
+                                "target": "art-doc-dev-loc-todo-app/"
                             }
                         ]
             }''',
@@ -110,7 +110,7 @@ pipeline{
                 spec:"""{
                      "files": [
                                 {
-                                    "pattern": "art-doc-dev-loc-todo-app/todo-app/**",
+                                    "pattern": "art-doc-dev-loc-todo-app/**",
                                     "target": "app/artifacts/"      
                                 }
                             ]
