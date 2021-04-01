@@ -100,9 +100,9 @@ pipeline{
                         ]
             }''',
             )
-
             }
         }
+        
         stage('download artifact'){
             steps{
                  rtDownload (
