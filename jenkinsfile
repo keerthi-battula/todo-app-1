@@ -111,7 +111,7 @@ pipeline{
                      "files": [
                                 {
                                     "pattern": "art-doc-dev-loc-todo-app/**",
-                                    "target": "app/artifacts/"      
+                                    "target": "app/"      
                                 }
                             ]
               }"""
