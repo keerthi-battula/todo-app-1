@@ -119,7 +119,29 @@ pipeline{
             
             }
         }
+stage('Docker build'){
+            steps{
+               
+                    sh 'docker image prune -a --force'
+                    sh 'docker-compose build'
+                
+                
+            }
+        }
+        stage('Pushing images to docker hub'){
+            steps{
+                
 
+                withCredentials([string(credentialsId: 'docker-pwd', variable: 'dockerHubPWD')]) {
+                            // some block
+                   sh "docker login -u keerthibattula -p ${dockerHubPWD}"
+
+                }
+                sh "docker commit cisample_app_1 keerthibattula/todo-app:v${env.BUILD_ID}"
+                sh "docker push keerthibattula/todo-app:v${env.BUILD_ID}"
+
+            }
+        }
         
 
     }
