@@ -6,7 +6,7 @@ pipeline{
    }
     stages{
         stage("build"){
-        last_started = env.STAGE_NAME
+        
             steps{
             
                 bat 'mvn clean'
@@ -24,7 +24,7 @@ pipeline{
     
      stage("Test"){
             steps{
-            last_started = env.STAGE_NAME
+            
                 echo "Maven Test"
                 bat 'mvn -f app/pom.xml -Dmaven.test.failure.ignore=true  test'
                 
@@ -45,7 +45,7 @@ pipeline{
        stage('sonar analysis'){
             agent any
             steps{
-            last_started = env.STAGE_NAME
+            
                 withSonarQubeEnv('sonar-server'){
                     echo 'Performing SonarQube Analysis'
                     bat 'mvn -f app/pom.xml package sonar:sonar'
@@ -68,7 +68,7 @@ pipeline{
               
               timeout(time: 1, unit: 'HOURS') {
                 script{
-                last_started = env.STAGE_NAME
+                
                         def qg = waitForQualityGate() 
                         if (qg.status != 'OK')
                         {
@@ -126,17 +126,17 @@ pipeline{
         }
 stage('Docker build'){
             steps{
-               last_started = env.STAGE_NAME
+               
                     sh 'docker image prune -a --force'
                     sh 'docker-compose build'
                 
-                
+               env.last_started = env.STAGE_NAME
             }
         }
         stage('Pushing images to docker hub'){
             steps{
                 
-               last_started = env.STAGE_NAME
+               
                 withCredentials([string(credentialsId: 'docker-pwd', variable: 'dockerHubPWD')]) {
                             // some block
                    sh "docker login -u keerthibattula -p ${dockerHubPWD}"
