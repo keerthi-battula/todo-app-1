@@ -130,7 +130,7 @@ stage('Docker build'){
                     sh 'docker image prune -a --force'
                     sh 'docker-compose build'
                 
-               env.last_started = env.STAGE_NAME
+               
             }
         }
         stage('Pushing images to docker hub'){
