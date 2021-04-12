@@ -87,7 +87,7 @@ pipeline{
         }  
         
         
-    stage('deploy to artifactory'){
+    /*stage('deploy to artifactory'){
             steps{
                 rtUpload (
             serverId: 'ARTIFACTORY_SERVER',
@@ -101,9 +101,9 @@ pipeline{
             }''',
             )
             }
-        }
+        }*/
         
-        stage('download artifact'){
+       /* stage('download artifact'){
             steps{
                  rtDownload (
                  serverId: "ARTIFACTORY_SERVER",
@@ -118,7 +118,7 @@ pipeline{
             )
             
             }
-        }
+        }*/
 
         
 
