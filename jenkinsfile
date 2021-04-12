@@ -119,7 +119,7 @@ pipeline{
             
             }
         }
-/*stage('Docker build'){
+stage('Docker build'){
             steps{
                
                     sh 'docker image prune -a --force'
@@ -141,7 +141,7 @@ pipeline{
                 sh "docker push keerthibattula/todo-app:v${env.BUILD_ID}"
 
             }
-        }*/
+        }
         
 
     }
