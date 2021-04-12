@@ -6,8 +6,9 @@ pipeline{
    }
     stages{
         stage("build"){
+        last_started = env.STAGE_NAME
             steps{
-            last_started = env.STAGE_NAME
+            
                 bat 'mvn clean'
                 bat 'mvn -f app/pom.xml compile'
             }
