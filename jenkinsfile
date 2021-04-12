@@ -7,8 +7,8 @@ pipeline{
     stages{
         stage("build"){
             steps{
-                sh 'mvn clean'
-                sh 'mvn -f app/pom.xml compile'
+                bat 'mvn clean'
+                bat 'mvn -f app/pom.xml compile'
             }
             post{
                 success{
@@ -23,7 +23,7 @@ pipeline{
      stage("Test"){
             steps{
                 echo "Maven Test"
-                sh 'mvn -f app/pom.xml -Dmaven.test.failure.ignore=true  test'
+                bat 'mvn -f app/pom.xml -Dmaven.test.failure.ignore=true  test'
                 
             }
             post{
@@ -44,7 +44,7 @@ pipeline{
             steps{
                 withSonarQubeEnv('sonar-server'){
                     echo 'Performing SonarQube Analysis'
-                    sh 'mvn -f app/pom.xml package sonar:sonar'
+                    bat 'mvn -f app/pom.xml package sonar:sonar'
                 }
             }
             post{
