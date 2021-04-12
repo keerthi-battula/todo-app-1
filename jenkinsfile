@@ -7,6 +7,7 @@ pipeline{
     stages{
         stage("build"){
             steps{
+            last_started = env.STAGE_NAME
                 bat 'mvn clean'
                 bat 'mvn -f app/pom.xml compile'
             }
@@ -22,6 +23,7 @@ pipeline{
     
      stage("Test"){
             steps{
+            last_started = env.STAGE_NAME
                 echo "Maven Test"
                 bat 'mvn -f app/pom.xml -Dmaven.test.failure.ignore=true  test'
                 
@@ -42,6 +44,7 @@ pipeline{
        stage('sonar analysis'){
             agent any
             steps{
+            last_started = env.STAGE_NAME
                 withSonarQubeEnv('sonar-server'){
                     echo 'Performing SonarQube Analysis'
                     bat 'mvn -f app/pom.xml package sonar:sonar'
@@ -64,6 +67,7 @@ pipeline{
               
               timeout(time: 1, unit: 'HOURS') {
                 script{
+                last_started = env.STAGE_NAME
                         def qg = waitForQualityGate() 
                         if (qg.status != 'OK')
                         {
@@ -121,7 +125,7 @@ pipeline{
         }
 stage('Docker build'){
             steps{
-               
+               last_started = env.STAGE_NAME
                     sh 'docker image prune -a --force'
                     sh 'docker-compose build'
                 
@@ -131,7 +135,7 @@ stage('Docker build'){
         stage('Pushing images to docker hub'){
             steps{
                 
-
+               last_started = env.STAGE_NAME
                 withCredentials([string(credentialsId: 'docker-pwd', variable: 'dockerHubPWD')]) {
                             // some block
                    sh "docker login -u keerthibattula -p ${dockerHubPWD}"
@@ -155,7 +159,7 @@ stage('Docker build'){
          }  
          failure {  
          echo " *build failed* "
-              mail bcc: '', body: "<b>Example</b><br>Project: ${env.JOB_NAME} <br>Build Number: ${env.BUILD_NUMBER} <br>Stage Name: ${env.last_started} <br> URL de build: ${env.BUILD_URL}", cc: '', charset: 'UTF-8', from: 'net2bks@gmail.com', mimeType: 'text/html', replyTo: '', subject: "ERROR CI: Project name -> ${env.JOB_NAME}", to: "net2bks@gmail.com";   
+              mail bcc: '', body: "<b>Example</b><br>Project: ${env.JOB_NAME} <br>Build Number: ${env.BUILD_NUMBER} <br>Stage Name: $last_started <br> URL de build: ${env.BUILD_URL}", cc: '', charset: 'UTF-8', from: 'net2bks@gmail.com', mimeType: 'text/html', replyTo: '', subject: "ERROR CI: Project name -> ${env.JOB_NAME}", to: "net2bks@gmail.com";   
          }  
          unstable {  
              echo 'This will run only if the run was marked as unstable'  
