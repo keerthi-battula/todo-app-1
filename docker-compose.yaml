@@ -27,7 +27,7 @@ services:
   app:
     container_name: todo-app
     restart: always
-    build: ./app
+    build: ../app
     ports:
       - "9090:8080"
     environment:
