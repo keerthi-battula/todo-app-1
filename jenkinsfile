@@ -158,7 +158,7 @@ stage('Docker build'){
                 withCredentials([string(credentialsId: 'dockerpassword', variable: 'docker_pwd')]) {
                  // some block
 
-                   bat "docker login -u keerthibattula -p $(docker_pwd)"
+                   bat "docker login -u keerthibattula -p ${docker_pwd}"
 
                 }
                // sh "docker commit cisample_app_1 keerthibattula/todo-app:v${env.BUILD_ID}"
