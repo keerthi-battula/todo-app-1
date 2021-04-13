@@ -110,7 +110,7 @@ pipeline{
             spec: '''{
                  "files": [
                              {
-                                "pattern": "C:/WINDOWS/system32/config/systemprofile/AppData/Local/Jenkins/.jenkins/workspace/ci-final@2/app/target/*.war",
+                                "pattern": "app/target/*.war",
                                 "target": "art-doc-dev-loc/todo-app/"
                             }
                         ]
@@ -130,7 +130,7 @@ pipeline{
                      "files": [
                                 {
                                     "pattern": "art-doc-dev-loc/todo-app/**",
-                                    "target": "app/"      
+                                    "target": "app/artifacts/"      
                                 }
                             ]
               }"""
