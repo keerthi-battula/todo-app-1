@@ -149,7 +149,7 @@ stage('Docker build'){
                
             }
         }
-        stage('Pushing images to docker hub'){
+       /* stage('Pushing images to docker hub'){
             steps{
                 script{
                 last_staged = env.STAGE_NAME
@@ -166,7 +166,7 @@ stage('Docker build'){
                 bat "docker push keerthibattula/todo-app:latest"
 
             }
-        }
+        }*/
         stage('deploying it to kubernetes'){
             steps{
                 sh 'chmod +x change-tag.sh'
