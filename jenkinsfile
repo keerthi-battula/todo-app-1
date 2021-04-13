@@ -159,7 +159,7 @@ stage('Docker build'){
                             // some block
                    sh "docker login -u keerthibattula -p keerthibattula"
 
-                }
+               // }
                // sh "docker commit cisample_app_1 keerthibattula/todo-app:v${env.BUILD_ID}"
                sh "docker tag ci-final_app:latest keerthibattula/todo-app:v${env.BUILD_ID}"
                 sh "docker push keerthibattula/todo-app:v${env.BUILD_ID}"
