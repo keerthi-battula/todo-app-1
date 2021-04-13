@@ -1,3 +1,3 @@
 FROM maven:3.5-jdk-8
-COPY app/TodoDemo-0.0.1-SNAPSHOT.war app.war
+COPY C:/WINDOWS/system32/config/systemprofile/AppData/Local/Jenkins/.jenkins/workspace/ci-final@2/app/target/*.war app.war
 ENTRYPOINT [ "java","-jar","app.war" ]
