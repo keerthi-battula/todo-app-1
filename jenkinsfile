@@ -155,12 +155,13 @@ stage('Docker build'){
                 last_staged = env.STAGE_NAME
                 }
                
-                withCredentials([string(credentialsId: 'docker-pwd', variable: 'dockerHubPWD')]) {
+                //withCredentials([string(credentialsId: 'docker-pwd', variable: 'dockerHubPWD')]) {
                             // some block
-                   sh "docker login -u keerthibattula -p ${dockerHubPWD}"
+                   sh "docker login -u keerthibattula -p keerthibattula"
 
                 }
-                sh "docker commit cisample_app_1 keerthibattula/todo-app:v${env.BUILD_ID}"
+               // sh "docker commit cisample_app_1 keerthibattula/todo-app:v${env.BUILD_ID}"
+               sh "docker tag ci-final_app:latest keerthibattula/todo-app:v${env.BUILD_ID}"
                 sh "docker push keerthibattula/todo-app:v${env.BUILD_ID}"
 
             }
