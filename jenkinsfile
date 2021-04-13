@@ -160,9 +160,9 @@ stage('Docker build'){
               bat "docker login -u keerthibattula -p ${docker_pwd}"
 
                 }
-               // sh "docker commit cisample_app_1 keerthibattula/todo-app:v${env.BUILD_ID}"
-               bat "docker tag ci-final_app:latest keerthibattula/todo-app:v${env.BUILD_ID}"
-                bat "docker push keerthibattula/todo-app:v${env.BUILD_ID}"
+               // sh "docker commit cisample_app_1 keerthibattula/todo-app:latest"
+               bat "docker tag ci-final_app:latest keerthibattula/todo-app:latest"
+                bat "docker push keerthibattula/todo-app:latest"
 
             }
         }
