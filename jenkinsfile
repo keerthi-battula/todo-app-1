@@ -110,8 +110,8 @@ pipeline{
             spec: '''{
                  "files": [
                              {
-                                "pattern": "target/*.war",
-                                "target": "art-doc-dev-loc/"
+                                "pattern": "/var/jenkins_home/workspace/todo-app-complete-ci-cd@2/app/target/*.war",
+                                "target": "art-art-doc-dev-loc-todo-app/"
                             }
                         ]
             }''',
@@ -129,7 +129,7 @@ pipeline{
                 spec:"""{
                      "files": [
                                 {
-                                    "pattern": "art-doc-dev-loc/**",
+                                    "pattern": "art-doc-dev-loc-todo-app/**",
                                     "target": "app/"      
                                 }
                             ]
