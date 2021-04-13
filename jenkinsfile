@@ -155,8 +155,9 @@ stage('Docker build'){
                 last_staged = env.STAGE_NAME
                 }
                
-                withCredentials([string(credentialsId: 'dockerpassword', variable: 'docker_pwd')]) {
-                      // some block
+                withCredentials([string(credentialsId: 'doc', variable: 'docker_pwd')]) {
+                // some block
+
               bat "docker login -u keerthibattula -p ${docker_pwd}"
 
                 }
