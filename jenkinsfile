@@ -8,9 +8,7 @@ pipeline{
         stage("build"){
         
             steps{
-            script{
-                last_staged = env.STAGE_NAME
-                }
+           
                 bat 'mvn clean'
                 bat 'mvn -f app/pom.xml compile'
             }
@@ -26,9 +24,7 @@ pipeline{
     
      stage("Test"){
             steps{
-                script{
-                last_started=env.STAGE_NAME
-                  }
+               
                 echo "Maven Test"
                 bat 'mvn -f app/pom.xml -Dmaven.test.failure.ignore=true  test'
                 
@@ -49,9 +45,7 @@ pipeline{
        stage('sonar analysis'){
             agent any
             steps{
-            script{
-                last_staged = env.STAGE_NAME
-                }
+           
                 withSonarQubeEnv('sonar-server'){
                     echo 'Performing SonarQube Analysis'
                     bat 'mvn -f app/pom.xml package sonar:sonar'
@@ -71,9 +65,7 @@ pipeline{
         
          stage("Quality Gate") {
             steps {
-              script{
-                last_staged = env.STAGE_NAME
-                }
+             
               timeout(time: 1, unit: 'HOURS') {
                 script{
                 
@@ -102,9 +94,7 @@ pipeline{
         
     stage('deploy to artifactory'){
             steps{
-            script{
-                last_staged = env.STAGE_NAME
-                }
+          
                 rtUpload (
             serverId: 'ARTIFACTORY_SERVER',
             spec: '''{
@@ -121,9 +111,7 @@ pipeline{
         
         stage('download artifact'){
             steps{
-            script{
-                last_staged = env.STAGE_NAME
-                }
+           
                  rtDownload (
                  serverId: "ARTIFACTORY_SERVER",
                 spec:"""{
@@ -140,9 +128,7 @@ pipeline{
         }
 stage('Docker build'){
             steps{
-               script{
-                last_staged = env.STAGE_NAME
-                }
+              
                     bat 'docker image prune -a --force'
                     bat 'docker-compose build'
                 
@@ -151,9 +137,7 @@ stage('Docker build'){
         }
        /* stage('Pushing images to docker hub'){
             steps{
-                script{
-                last_staged = env.STAGE_NAME
-                }
+              
                
                 withCredentials([string(credentialsId: 'doc', variable: 'docker_pwd')]) {
                 // some block
