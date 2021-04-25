@@ -139,8 +139,10 @@ stage('Docker build'){
             steps{
               
                
-                withCredentials([string(credentialsId: 'doc', variable: 'docker_pwd')]) {
+              //  withCredentials([string(credentialsId: 'doc', variable: 'docker_pwd')]) {
                 // some block
+withCredentials([usernameColonPassword(credentialsId: 'dockerjava', variable: 'docker_pwd')]) {
+    // some block
 
               bat "docker login -u keerthibattula -p ${docker_pwd}"
 
