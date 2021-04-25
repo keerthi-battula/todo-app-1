@@ -135,7 +135,7 @@ stage('Docker build'){
                
             }
         }
-       /* stage('Pushing images to docker hub'){
+        stage('Pushing images to docker hub'){
             steps{
               
                
@@ -150,7 +150,7 @@ stage('Docker build'){
                 bat "docker push keerthibattula/todo-app:latest"
 
             }
-        }*/
+        }
       /*  stage('deploying it to kubernetes'){
             steps{
                // bat 'chmod +x change-tag.sh'
