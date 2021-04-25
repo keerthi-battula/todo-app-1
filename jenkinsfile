@@ -167,7 +167,7 @@ stage('Docker build'){
 
             }
         }*/
-        stage('deploying it to kubernetes'){
+      /*  stage('deploying it to kubernetes'){
             steps{
                // bat 'chmod +x change-tag.sh'
               //  sh """./change-tag.sh v${env.BUILD_ID}"""
@@ -187,7 +187,7 @@ stage('Docker build'){
                 }
 
             }
-        }
+        }*/
 
     }
     post{
